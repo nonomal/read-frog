@@ -4,7 +4,6 @@ import textSmallCSS from '@/assets/tailwind/text-small.css?inline'
 import themeCSS from '@/assets/tailwind/theme.css?inline'
 import { TranslationError } from '@/components/tranlation-error'
 import { createReactShadowHost, removeReactShadowHost } from '@/utils/react-shadow-host/create-shadow-host'
-import { globalConfig } from '../../config/config'
 import {
   BLOCK_CONTENT_CLASS,
   CONSECUTIVE_INLINE_END_ATTRIBUTE,
@@ -39,12 +38,9 @@ function getOwnerDocument(node: Node): Document {
 }
 
 export async function hideOrShowNodeTranslation(point: Point) {
-  if (!globalConfig)
-    return
-
   const node = findNearestBlockNodeAt(point)
 
-  if (!node || !isHTMLElement(node) || !node.textContent?.trim())
+  if (!node || !isHTMLElement(node))
     return
 
   const id = crypto.randomUUID()

@@ -85,7 +85,6 @@ function findElementAt(root: Document | ShadowRoot, point: Point): Element | nul
 export function findNearestBlockNodeAt(point: Point) {
   let currentNode = findElementAt(document, point)
 
-  // TODO: support SVGElement in the future
   while (
     currentNode && isHTMLElement(currentNode)
     && isShallowInlineHTMLElement(currentNode)
