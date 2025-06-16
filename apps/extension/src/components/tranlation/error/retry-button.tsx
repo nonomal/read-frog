@@ -24,7 +24,7 @@ export function RetryButton({ nodes }: { nodes: TransNode[] }) {
           />
         </button>
       </TooltipTrigger>
-      <TooltipContent container={shadowWrapper} side="bottom">
+      <TooltipContent container={shadowWrapper} side="bottom" className="notranslate">
         Retry translation
       </TooltipContent>
     </Tooltip>
