@@ -13,21 +13,6 @@ import { translateWalkedElement, walkAndLabelElement } from '../dom/traversal'
 import { translateNodes } from '../translate/node-manipulation'
 import { translateText } from '../translate/translate-text'
 
-// Mock window.matchMedia for testing environment
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: vi.fn().mockImplementation(query => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: vi.fn(), // deprecated
-    removeListener: vi.fn(), // deprecated
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
-})
-
 vi.mock('../translate/translate-text', () => ({
   translateText: vi.fn(() => Promise.resolve('translation')),
 }))
