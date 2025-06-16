@@ -16,14 +16,11 @@ import {
 } from '../../constants/dom-labels'
 import { FORCE_INLINE_TRANSLATION_TAGS } from '../../constants/dom-tags'
 import { isBlockTransNode, isHTMLElement, isInlineTransNode, isTextNode, isTranslatedWrapperNode } from '../dom/filter'
+import { deepQueryTopLevelSelector, findNearestAncestorBlockNodeAt, unwrapDeepestOnlyHTMLChild } from '../dom/find'
 import { getOwnerDocument } from '../dom/node'
-
 import {
-  deepQueryTopLevelSelector,
   extractTextContent,
-  findNearestBlockNodeAt,
   translateWalkedElement,
-  unwrapDeepestOnlyHTMLChild,
   walkAndLabelElement,
 } from '../dom/traversal'
 import { translateText } from './translate-text'
@@ -31,7 +28,7 @@ import { translateText } from './translate-text'
 const translatingNodes = new Set<HTMLElement | Text>()
 
 export async function hideOrShowNodeTranslation(point: Point) {
-  const node = findNearestBlockNodeAt(point)
+  const node = findNearestAncestorBlockNodeAt(point)
 
   if (!node || !isHTMLElement(node))
     return
