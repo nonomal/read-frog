@@ -12,7 +12,7 @@ import {
   MAIN_CONTENT_IGNORE_TAGS,
 } from '@/utils/constants/dom-tags'
 
-import { translateConsecutiveInlineNodes, translateNode } from '../translate/node-manipulation'
+import { translateNodes } from '../translate/node-manipulation'
 import {
   isDontWalkIntoElement,
   isHTMLElement,
@@ -224,7 +224,7 @@ export async function translateWalkedElement(
     }
 
     if (!hasBlockNodeChild) {
-      promises.push(translateNode(element, toggle))
+      promises.push(translateNodes([element], toggle))
     }
     else {
       // prevent children change during iteration
@@ -306,11 +306,8 @@ async function dealWithConsecutiveInlineNodes(nodes: TransNode[], toggle: boolea
     if (isHTMLElement(lastNode)) {
       lastNode.setAttribute(CONSECUTIVE_INLINE_END_ATTRIBUTE, '')
     }
-    await translateConsecutiveInlineNodes(nodes, toggle)
   }
-  else if (nodes.length === 1) {
-    await translateNode(nodes[0], toggle)
-  }
+  await translateNodes(nodes, toggle)
 }
 
 export function deepQueryTopLevelSelector(element: HTMLElement | ShadowRoot | Document, selectorFn: (element: HTMLElement) => boolean): HTMLElement[] {

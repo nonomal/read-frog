@@ -7,7 +7,7 @@ export function setUpRequestQueue() {
     capacity: 300,
     timeoutMs: 20_000,
     maxRetries: 2,
-    baseRetryDelayMs: 1_000,
+    baseRetryDelayMs: 1000_000,
   })
 
   onMessage('enqueueRequest', (message) => {
