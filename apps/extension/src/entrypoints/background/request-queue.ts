@@ -45,6 +45,7 @@ export function setUpRequestQueue() {
       await db.translationCache.put({
         key: data.hash,
         translation: result,
+        createdAt: new Date(),
       })
     }
 

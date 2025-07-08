@@ -1,4 +1,6 @@
+import { upperCamelCase } from 'case-anything'
 import Dexie, { type EntityTable } from 'dexie'
+import { APP_NAME } from '@/utils/constants/app'
 import TranslationCache from './tables/translation-cache'
 
 export default class AppDB extends Dexie {
@@ -8,11 +10,12 @@ export default class AppDB extends Dexie {
   >
 
   constructor() {
-    super('AppDB')
+    super(`${upperCamelCase(APP_NAME)}DB`)
     this.version(1).stores({
       translationCache: `
         key,
-        translation`,
+        translation,
+        createdAt`,
     })
     this.translationCache.mapToClass(TranslationCache)
   }
