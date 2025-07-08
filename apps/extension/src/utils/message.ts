@@ -19,9 +19,6 @@ interface ProtocolMap {
   returnPinState: (data: { isPinned: boolean }) => void
   // request
   enqueueRequest: (data: { type: string, params: Record<string, any>, scheduleAt: number, hash: string }) => Promise<any>
-  // cache management
-  cleanupTranslationCache: () => Promise<{ deletedCount: number, cutoffDate: Date }>
-  getTranslationCacheStats: () => Promise<{ totalEntries: number, oldEntries: number, cleanupThreshold: Date }>
 }
 
 export const { sendMessage, onMessage }
