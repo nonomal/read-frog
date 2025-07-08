@@ -14,6 +14,14 @@ export function setUpRequestQueue() {
   onMessage('enqueueRequest', async (message) => {
     const { data } = message
 
+    // Check cache first
+    if (data.hash) {
+      const cached = await db.translationCache.get(data.hash)
+      if (cached) {
+        return cached.translation
+      }
+    }
+
     // Create thunk based on type and params
     let thunk: () => Promise<any>
     switch (data.type) {
