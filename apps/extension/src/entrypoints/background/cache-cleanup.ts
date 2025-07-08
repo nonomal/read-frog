@@ -1,13 +1,13 @@
 import { db } from '@/utils/db/dexie/db'
 
 const CACHE_CLEANUP_ALARM = 'cache-cleanup'
-const CLEANUP_INTERVAL_MINUTES = 7 * 24 * 60 // Clean cache older than 7 days (in minutes)
-const CHECK_INTERVAL_MINUTES = 24 * 60 // Check every 24 hours
+const CLEANUP_INTERVAL_MINUTES = 7 * 24 * 60
+const CHECK_INTERVAL_MINUTES = 24 * 60
 
 export function setupCacheCleanup() {
   // Set up periodic alarm for cache cleanup
   browser.alarms.create(CACHE_CLEANUP_ALARM, {
-    delayInMinutes: 1, // Start cleanup 1 minute after setup
+    delayInMinutes: 1,
     periodInMinutes: CHECK_INTERVAL_MINUTES,
   })
 
