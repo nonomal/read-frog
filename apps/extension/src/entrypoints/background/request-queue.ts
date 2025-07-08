@@ -1,3 +1,4 @@
+import { db } from '@/utils/db/dexie/db'
 import { aiTranslate, googleTranslate, microsoftTranslate } from '@/utils/host/translate/api'
 import { RequestQueue } from '@/utils/request/request-queue'
 
@@ -10,7 +11,7 @@ export function setUpRequestQueue() {
     baseRetryDelayMs: 1_000,
   })
 
-  onMessage('enqueueRequest', (message) => {
+  onMessage('enqueueRequest', async (message) => {
     const { data } = message
 
     // Create thunk based on type and params
@@ -29,6 +30,16 @@ export function setUpRequestQueue() {
         throw new Error(`Unknown request type: ${data.type}`)
     }
 
-    return requestQueue.enqueue(thunk, data.scheduleAt, data.hash)
+    const result = await requestQueue.enqueue(thunk, data.scheduleAt, data.hash)
+
+    // Cache the translation result if successful
+    if (result && data.hash) {
+      await db.translationCache.put({
+        key: data.hash,
+        translation: result,
+      })
+    }
+
+    return result
   })
 }
