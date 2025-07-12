@@ -1,4 +1,3 @@
-import process from 'node:process'
 import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
@@ -6,6 +5,7 @@ export default defineConfig({
   schema: './src/schema/**/*.{ts,js}',
   dialect: 'postgresql',
   dbCredentials: {
+    // eslint-disable-next-line node/prefer-global/process
     url: process.env.DATABASE_URL!,
   },
 })
