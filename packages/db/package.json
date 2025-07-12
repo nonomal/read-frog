@@ -7,8 +7,7 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "migrations",
-    "schema"
+    "migrations"
   ],
   "scripts": {
     "db:generate": "dotenv -e .env -- drizzle-kit generate",
