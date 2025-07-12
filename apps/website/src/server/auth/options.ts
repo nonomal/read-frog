@@ -1,4 +1,5 @@
 import type { BetterAuthOptions } from 'better-auth'
+import { APP_NAME } from '@/lib/constants'
 
 /**
  * Custom options for Better Auth
@@ -9,7 +10,7 @@ export const betterAuthOptions: BetterAuthOptions = {
   /**
    * The name of the application.
    */
-  appName: 'YOUR_APP_NAME',
+  appName: APP_NAME,
   /**
    * Base path for Better Auth.
    * @default "/api/auth"
