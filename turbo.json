@@ -5,6 +5,16 @@
     "build": {
       "dependsOn": ["^build"]
     },
+    "@repo/db#build": {
+      "env": ["DATABASE_URL"]
+    },
+    "@read-frog/website#build": {
+      "env": [
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "DATABASE_URL"
+      ]
+    },
     "dev": {
       "cache": false,
       "persistent": true
