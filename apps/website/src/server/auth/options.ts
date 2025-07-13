@@ -30,6 +30,7 @@ export const betterAuthOptions: BetterAuthOptions = {
   },
   socialProviders: {
     google: {
+      prompt: 'select_account',
       // TODO: typesafe way to get GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
