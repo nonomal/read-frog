@@ -3,6 +3,7 @@
 import { authClient } from '@/lib/auth-client'
 
 export default function SignUpPage() {
+  const session = authClient.useSession()
   const handleSignUp = () => {
     const timestamp = Date.now()
     const randomNum = Math.floor(Math.random() * 1000)
@@ -24,6 +25,7 @@ export default function SignUpPage() {
       >
         Sign Up
       </button>
+      <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>
   )
 }
