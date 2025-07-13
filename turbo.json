@@ -11,11 +11,9 @@
     },
     "@read-frog/extension#build": {
       "inputs": ["$TURBO_DEFAULT$", "!coverage/**"],
-      "dependsOn": ["^build"],
       "outputs": [".output/**", ".wxt/**"]
     },
     "@read-frog/website#build": {
-      "dependsOn": ["@repo/db#build"],
       "env": [
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
