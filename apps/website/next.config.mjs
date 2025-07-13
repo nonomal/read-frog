@@ -14,6 +14,15 @@ const config = {
     // Use only WebP format to reduce number of transformations
     formats: ['image/webp'],
 
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+
     // Other possible configurations:
     // formats: ['image/avif', 'image/webp'], // Default: supports two modern formats, but increases cache
     // formats: ['image/avif'],               // Only use AVIF: smallest file, but browser support is limited

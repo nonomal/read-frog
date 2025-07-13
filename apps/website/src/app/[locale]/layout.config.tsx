@@ -2,8 +2,7 @@ import type { BaseLayoutProps, LinkItemType } from 'fumadocs-ui/layouts/shared'
 import type { Locale } from '@/i18n/routing'
 import { GithubInfo } from 'fumadocs-ui/components/github-info'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/shadcn/button'
+import { UserAccount } from '@/components/user-account'
 import { APP_NAME_LOCALE, NAV_ITEMS_LOCALE } from '@/lib/constants'
 import { i18n } from '@/lib/i18n'
 
@@ -38,11 +37,7 @@ export function homeLinks(locale: Locale): LinkItemType[] {
     },
     {
       type: 'custom',
-      children: (
-        <Button className="mx-2" asChild>
-          <Link href="/log-in">Log in</Link>
-        </Button>
-      ),
+      children: <UserAccount />,
       secondary: true,
     },
   ]
