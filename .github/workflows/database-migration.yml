@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false # 不取消正在进行的迁移
+  cancel-in-progress: false # Don't cancel in progress migrations
 
 jobs:
   migrate:
