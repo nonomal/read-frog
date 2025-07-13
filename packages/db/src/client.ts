@@ -4,6 +4,7 @@ import postgres from 'postgres'
 import * as schema from '@/schema/auth'
 
 export function createDb() {
+  // TODO: typesafe way to get DATABASE_URL
   const sql = postgres(process.env.DATABASE_URL!, {
     prepare: false,
   })
