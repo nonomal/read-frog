@@ -6,14 +6,22 @@
       "dependsOn": ["^build"]
     },
     "@repo/db#build": {
-      "env": ["DATABASE_URL"]
+      "env": ["DATABASE_URL"],
+      "outputs": ["dist/**"]
+    },
+    "@read-frog/extension#build": {
+      "inputs": ["$TURBO_DEFAULT$", "!coverage/**"],
+      "dependsOn": ["^build"],
+      "outputs": [".output/**", ".wxt/**"]
     },
     "@read-frog/website#build": {
+      "dependsOn": ["@repo/db#build"],
       "env": [
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
         "DATABASE_URL"
-      ]
+      ],
+      "outputs": [".next/**", "!.next/cache/**", ".source/**"]
     },
     "dev": {
       "cache": false,
