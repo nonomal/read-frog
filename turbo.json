@@ -5,25 +5,6 @@
     "build": {
       "dependsOn": ["^build"]
     },
-    "@repo/db#build": {
-      "dependsOn": ["^build"],
-      "env": ["DATABASE_URL"],
-      "outputs": ["dist/**"]
-    },
-    "@read-frog/extension#build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", "!coverage/**"],
-      "outputs": [".output/**", ".wxt/**"]
-    },
-    "@read-frog/website#build": {
-      "dependsOn": ["^build"],
-      "env": [
-        "BETTER_AUTH_SECRET",
-        "BETTER_AUTH_URL",
-        "DATABASE_URL"
-      ],
-      "outputs": [".next/**", "!.next/cache/**", ".source/**"]
-    },
     "dev": {
       "cache": false,
       "persistent": true

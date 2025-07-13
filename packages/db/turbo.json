@@ -1,6 +1,10 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
   "tasks": {
+    "build": {
+      "env": ["DATABASE_URL"],
+      "outputs": ["dist/**"]
+    },
     "db:generate": {
       "cache": false
     },
@@ -11,6 +15,5 @@
       "cache": false,
       "persistent": true
     }
-  },
-  "extends": ["//"]
+  }
 }

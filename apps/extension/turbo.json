@@ -1,6 +1,10 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
   "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", "!coverage/**"],
+      "outputs": [".output/**", ".wxt/**"]
+    },
     "zip": {
       "outputs": [".output/**"]
     },
@@ -12,6 +16,5 @@
       "cache": false,
       "persistent": true
     }
-  },
-  "extends": ["//"]
+  }
 }
