@@ -7,7 +7,8 @@
         "BETTER_AUTH_URL",
         "GOOGLE_CLIENT_ID",
         "GOOGLE_CLIENT_SECRET",
-        "DATABASE_URL"
+        "DATABASE_URL",
+        "SKIP_ENV_VALIDATION"
       ],
       "outputs": [".next/**", "!.next/cache/**", ".source/**"]
     },
