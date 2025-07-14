@@ -1,6 +1,5 @@
-// TODO: remove this once we have a proper way to get the client id and secret
-/* eslint-disable node/prefer-global/process */
 import type { BetterAuthOptions } from 'better-auth'
+import { env } from '@/env'
 import { APP_NAME } from '@/lib/constants'
 
 /**
@@ -32,8 +31,8 @@ export const betterAuthOptions: BetterAuthOptions = {
     google: {
       prompt: 'select_account',
       // TODO: typesafe way to get GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     },
   },
   // .... More options
