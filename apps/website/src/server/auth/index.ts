@@ -3,7 +3,15 @@ import { authSchema, createDb } from '@repo/db'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { openAPI } from 'better-auth/plugins'
+import { TRUSTED_ORIGINS } from '@/lib/constants'
 import { betterAuthOptions } from './options'
+
+export function getTrustedOrigins() {
+  if (process.env.NODE_ENV === 'development') {
+    return [...TRUSTED_ORIGINS, 'chrome-extension://*', 'extension://*']
+  }
+  return TRUSTED_ORIGINS
+}
 
 export const auth = betterAuth({
   ...betterAuthOptions,
@@ -11,6 +19,7 @@ export const auth = betterAuth({
     provider: 'pg',
     schema: authSchema,
   }),
+  trustedOrigins: getTrustedOrigins(),
   baseURL: process.env.BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   plugins: [openAPI()],

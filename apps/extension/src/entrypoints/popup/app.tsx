@@ -9,6 +9,7 @@ import FloatingButton from './components/floating-button'
 import Hotkey from './components/hotkey-selector'
 import LanguageLevelSelector from './components/language-level-selector'
 import LanguageOptionsSelector from './components/language-options-selector'
+import { LoginInfo } from './components/login-info'
 import QuickLinks from './components/quick-links'
 import ReadButton from './components/read-button'
 import ReadProviderSelector from './components/read-provider-selector'
@@ -26,6 +27,7 @@ function App() {
   return (
     <>
       <div className="bg-background flex flex-col gap-4 px-6 pt-5 pb-4">
+        <LoginInfo />
         <LanguageOptionsSelector />
         <LanguageLevelSelector />
         <ReadProviderSelector />
