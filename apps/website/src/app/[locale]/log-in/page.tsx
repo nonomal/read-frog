@@ -8,7 +8,7 @@ export default function LogInPage() {
     try {
       await authClient.signIn.social({
         provider: 'google',
-        callbackURL: '/dashboard',
+        callbackURL: '/',
       })
     }
     catch (error) {
@@ -38,7 +38,7 @@ export default function LogInPage() {
             className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-6 py-3 text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200 shadow-sm"
           >
             <Image
-              src="/images/icons/google.png"
+              src="/icons/google.png"
               alt="Google"
               width={20}
               height={20}
