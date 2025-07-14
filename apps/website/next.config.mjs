@@ -1,13 +1,13 @@
-import { fileURLToPath } from 'node:url'
+// import { fileURLToPath } from 'node:url'
 import { createMDX } from 'fumadocs-mdx/next'
-import createJiti from 'jiti'
+// import createJiti from 'jiti'
 import createNextIntlPlugin from 'next-intl/plugin'
 
-const jiti = createJiti(fileURLToPath(import.meta.url))
-// Import env here to validate during build. Using jiti@^1 we can import .ts files :)
-jiti('./src/env')
+// const jiti = createJiti(fileURLToPath(import.meta.url))
+// // Import env here to validate during build. Using jiti@^1 we can import .ts files :)
+// jiti('./src/env')
 
-// import './src/env.js'
+import './src/env.js'
 
 const withMDX = createMDX()
 const withNextIntl = createNextIntlPlugin()
