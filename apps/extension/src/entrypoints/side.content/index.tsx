@@ -21,11 +21,9 @@ import { DEFAULT_CONFIG } from '@/utils/constants/config'
 import { protectSelectAllShadowRoot } from '@/utils/select-all'
 import { addStyleToShadow, mirrorDynamicStyles } from '../../utils/styles'
 import App from './app'
-
 import { enablePageTranslationAtom, store, translationPortAtom } from './atoms'
 import '@/assets/tailwind/text-small.css'
 import '@/assets/tailwind/theme.css'
-import '@/entrypoints/host.content/style.css'
 
 // eslint-disable-next-line import/no-mutable-exports
 export let shadowWrapper: HTMLElement | null = null
