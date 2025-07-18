@@ -1,7 +1,5 @@
 import { kebabCase } from 'case-anything'
-import ReactDOM from 'react-dom/client'
 import { APP_NAME } from '@/utils/constants/app.ts'
-import App from './app.tsx'
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -17,14 +15,14 @@ export default defineContentScript({
         container.append(app)
 
         // Create a root on the UI container and render a component
-        const root = ReactDOM.createRoot(app)
-        root.render(<App />)
-        return root
+        // const root = ReactDOM.createRoot(app)
+        // root.render(<App />)
+        // return root
       },
-      onRemove: (root) => {
-        // Unmount the root when the UI is removed
-        root?.unmount()
-      },
+      // onRemove: (root) => {
+      //   // Unmount the root when the UI is removed
+      //   root?.unmount()
+      // },
     })
 
     // 4. Mount the UI
