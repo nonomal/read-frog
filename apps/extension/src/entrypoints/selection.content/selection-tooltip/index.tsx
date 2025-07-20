@@ -13,6 +13,7 @@ export function SelectionTooltip() {
   const tooltipPositionRef = useRef({ x: 0, y: 0 }) // use ref to avoid re-rendering
   const mouseDownPositionRef = useRef({ x: 0, y: 0 }) // track mousedown position
   const pendingPositionRef = useRef<{ x: number, y: number, isDownwardSelection: boolean } | null>(null) // store pending position calculation
+  const previousSelectionTextRef = useRef<string | null>(null)
   const setSelectionContent = useSetAtom(selectionContentAtom)
 
   // Calculate position after tooltip is rendered
@@ -56,8 +57,10 @@ export function SelectionTooltip() {
     const handleMouseUp = (e: MouseEvent) => {
       // check if there is text selected
       const selection = window.getSelection()
-      if (selection && selection.toString().trim().length > 0) {
-        setSelectionContent(selection.toString())
+      const selectedText = selection?.toString().trim() || ''
+      if (selection && selectedText.length > 0 && selectedText !== previousSelectionTextRef.current) {
+        previousSelectionTextRef.current = selectedText
+        setSelectionContent(selectedText)
         // calculate the position relative to the document
         const scrollY = window.scrollY
         const scrollX = window.scrollX
@@ -73,6 +76,16 @@ export function SelectionTooltip() {
     }
 
     const handleMouseDown = (e: MouseEvent) => {
+      // Check if the click target is within the tooltip or its children
+      // Use composedPath() to get the full event path including through Shadow DOM boundaries
+      if (tooltipRef.current) {
+        const eventPath = e.composedPath()
+        const isClickInsideTooltip = eventPath.includes(tooltipRef.current)
+        if (isClickInsideTooltip) {
+          return
+        }
+      }
+
       mouseDownPositionRef.current = { x: e.clientX, y: e.clientY }
       setIsVisible(false)
     }
