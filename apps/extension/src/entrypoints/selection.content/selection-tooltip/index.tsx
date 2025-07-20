@@ -1,24 +1,26 @@
-import { useSetAtom } from 'jotai'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { selectionContentAtom } from './atom'
-import { TranslateButton } from './translate-button'
+import { useAtom, useSetAtom } from 'jotai'
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import { isTooltipVisibleAtom, selectionContentAtom } from './atom'
+import { TranslateButton, TranslatePopover } from './translate-button'
 
 const DOWNWARD_OFFSET_Y = 18
 const UPWARD_OFFSET_Y = -10
 const MARGIN = 25
+const SELECTION_DIRECTION_THRESHOLD = 5
 
 export function SelectionTooltip() {
-  const [isVisible, setIsVisible] = useState(false)
   const tooltipRef = useRef<HTMLDivElement>(null)
+  const tooltipContainerRef = useRef<HTMLDivElement>(null)
   const tooltipPositionRef = useRef({ x: 0, y: 0 }) // use ref to avoid re-rendering
-  const mouseDownPositionRef = useRef({ x: 0, y: 0 }) // track mousedown position
+  const mouseDownDocPositionRef = useRef({ x: 0, y: 0 }) // track mousedown position
   const pendingPositionRef = useRef<{ x: number, y: number, isDownwardSelection: boolean } | null>(null) // store pending position calculation
   const previousSelectionTextRef = useRef<string | null>(null)
+  const [isTooltipVisible, setIsTooltipVisible] = useAtom(isTooltipVisibleAtom)
   const setSelectionContent = useSetAtom(selectionContentAtom)
 
   // Calculate position after tooltip is rendered
   useLayoutEffect(() => {
-    if (isVisible && pendingPositionRef.current && tooltipRef.current) {
+    if (isTooltipVisible && pendingPositionRef.current && tooltipRef.current) {
       const { x, y, isDownwardSelection } = pendingPositionRef.current
       const tooltipWidth = tooltipRef.current.offsetWidth
       const tooltipHeight = tooltipRef.current.offsetHeight
@@ -49,7 +51,7 @@ export function SelectionTooltip() {
 
       pendingPositionRef.current = null
     }
-  }, [isVisible])
+  }, [isTooltipVisible])
 
   useEffect(() => {
     let animationFrameId: number
@@ -67,11 +69,12 @@ export function SelectionTooltip() {
 
         const docX = e.clientX + scrollX
         const docY = e.clientY + scrollY
-        const isDownwardSelection = e.clientY >= mouseDownPositionRef.current.y
+        // allow a small threshold to avoid the selection direction is not downward
+        const isDownwardSelection = docY + SELECTION_DIRECTION_THRESHOLD >= mouseDownDocPositionRef.current.y
 
         // Store pending position for useLayoutEffect to process
         pendingPositionRef.current = { x: docX, y: docY, isDownwardSelection }
-        setIsVisible(true)
+        setIsTooltipVisible(true)
       }
     }
 
@@ -86,20 +89,20 @@ export function SelectionTooltip() {
         }
       }
 
-      mouseDownPositionRef.current = { x: e.clientX, y: e.clientY }
-      setIsVisible(false)
+      mouseDownDocPositionRef.current = { x: e.clientX + window.scrollX, y: e.clientY + window.scrollY }
+      setIsTooltipVisible(false)
     }
 
     const handleSelectionChange = () => {
       // if the selected content is cleared, hide the tooltip
       const selection = window.getSelection()
       if (!selection || selection.toString().trim().length === 0) {
-        setIsVisible(false)
+        setIsTooltipVisible(false)
       }
     }
 
     const updatePosition = () => {
-      if (!isVisible || !tooltipRef.current)
+      if (!isTooltipVisible || !tooltipRef.current)
         return
 
       const scrollY = window.scrollY
@@ -147,22 +150,23 @@ export function SelectionTooltip() {
         cancelAnimationFrame(animationFrameId)
       }
     }
-  }, [isVisible, setSelectionContent])
-
-  if (!isVisible) {
-    return null
-  }
+  }, [isTooltipVisible, setSelectionContent, setIsTooltipVisible])
 
   return (
-    <div
-      ref={tooltipRef}
-      className="absolute z-[2147483647] bg-blue-500 rounded-sm shadow-lg cursor-pointer flex items-center"
-      style={{
-        left: `${tooltipPositionRef.current.x}px`,
-        top: `${tooltipPositionRef.current.y}px`,
-      }}
-    >
-      <TranslateButton />
+    <div ref={tooltipContainerRef}>
+      {isTooltipVisible && (
+        <div
+          ref={tooltipRef}
+          className="absolute z-[2147483647] bg-zinc-200 dark:bg-zinc-800 rounded-sm shadow-lg overflow-hidden flex items-center"
+          style={{
+            left: `${tooltipPositionRef.current.x}px`,
+            top: `${tooltipPositionRef.current.y}px`,
+          }}
+        >
+          <TranslateButton />
+        </div>
+      )}
+      <TranslatePopover />
     </div>
   )
 }
