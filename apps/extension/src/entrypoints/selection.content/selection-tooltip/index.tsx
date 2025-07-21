@@ -15,6 +15,7 @@ export function SelectionTooltip() {
   const mouseDownDocPositionRef = useRef({ x: 0, y: 0 }) // track mousedown position
   const pendingPositionRef = useRef<{ x: number, y: number, isDownwardSelection: boolean } | null>(null) // store pending position calculation
   const previousSelectionTextRef = useRef<string | null>(null)
+  const isDraggingFromTooltipRef = useRef(false) // track if dragging started from tooltip
   const [isTooltipVisible, setIsTooltipVisible] = useAtom(isTooltipVisibleAtom)
   const setSelectionContent = useSetAtom(selectionContentAtom)
 
@@ -57,9 +58,16 @@ export function SelectionTooltip() {
     let animationFrameId: number
 
     const handleMouseUp = (e: MouseEvent) => {
+      // If dragging started from tooltip, don't hide it
+      if (isDraggingFromTooltipRef.current) {
+        isDraggingFromTooltipRef.current = false // reset state
+        return
+      }
+
       // check if there is text selected
       const selection = window.getSelection()
       const selectedText = selection?.toString().trim() || ''
+
       if (selection && selectedText.length > 0 && selectedText !== previousSelectionTextRef.current) {
         previousSelectionTextRef.current = selectedText
         setSelectionContent(selectedText)
@@ -79,18 +87,21 @@ export function SelectionTooltip() {
     }
 
     const handleMouseDown = (e: MouseEvent) => {
-      // Check if the click target is within the tooltip or its children
-      // Use composedPath() to get the full event path including through Shadow DOM boundaries
-      if (tooltipRef.current) {
+      // Check if dragging started from within the tooltip container
+      if (tooltipContainerRef.current) {
         const eventPath = e.composedPath()
-        const isClickInsideTooltip = eventPath.includes(tooltipRef.current)
-        if (isClickInsideTooltip) {
-          return
-        }
+        isDraggingFromTooltipRef.current = eventPath.includes(tooltipContainerRef.current)
+      }
+      else {
+        isDraggingFromTooltipRef.current = false
       }
 
-      mouseDownDocPositionRef.current = { x: e.clientX + window.scrollX, y: e.clientY + window.scrollY }
+      if (isDraggingFromTooltipRef.current) {
+        return
+      }
+
       setIsTooltipVisible(false)
+      mouseDownDocPositionRef.current = { x: e.clientX + window.scrollX, y: e.clientY + window.scrollY }
     }
 
     const handleSelectionChange = () => {

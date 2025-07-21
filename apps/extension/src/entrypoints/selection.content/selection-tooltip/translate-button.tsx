@@ -1,4 +1,4 @@
-import { useAtomValue, useSetAtom } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { Languages, X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { isTooltipVisibleAtom, isTranslatePopoverVisibleAtom, mouseClickPositionAtom, selectionContentAtom } from './atom'
@@ -10,20 +10,13 @@ export function TranslateButton() {
   const setMousePosition = useSetAtom(mouseClickPositionAtom)
 
   const handleClick = (event: React.MouseEvent) => {
-    // 获取鼠标点击位置
     const rect = event.currentTarget.getBoundingClientRect()
     const x = rect.left
     const y = rect.top
 
-    // 设置鼠标位置
     setMousePosition({ x, y })
-
-    // 隐藏 tooltip，显示 popover
     setIsTooltipVisible(false)
     setIsTranslatePopoverVisible(true)
-
-    // logger.log('selectionContent', selectionContent)
-    // logger.log('Mouse position:', { x, y })
   }
 
   return (
@@ -35,29 +28,20 @@ export function TranslateButton() {
 }
 
 export function TranslatePopover() {
-  const isVisible = useAtomValue(isTranslatePopoverVisibleAtom)
+  const [isVisible, setIsVisible] = useAtom(isTranslatePopoverVisibleAtom)
   const mouseClickPosition = useAtomValue(mouseClickPositionAtom)
-  const setIsTranslatePopoverVisible = useSetAtom(isTranslatePopoverVisibleAtom)
   const selectionContent = useAtomValue(selectionContentAtom)
   const popoverRef = useRef<HTMLDivElement>(null)
 
-  const handleClose = () => {
-    setIsTranslatePopoverVisible(false)
-  }
-
-  // 点击外部关闭 popover
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (popoverRef.current) {
         const eventPath = event.composedPath()
         const isClickInsideTooltip = eventPath.includes(popoverRef.current)
         if (!isClickInsideTooltip) {
-          handleClose()
+          setIsVisible(false)
         }
       }
-      // if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
-      //   handleClose()
-      // }
     }
 
     if (isVisible) {
@@ -67,7 +51,7 @@ export function TranslatePopover() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isVisible])
+  }, [isVisible, setIsVisible])
 
   if (!isVisible || !mouseClickPosition) {
     return null
@@ -76,16 +60,17 @@ export function TranslatePopover() {
   return (
     <div
       ref={popoverRef}
-      className="fixed z-[9999] bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-4 min-w-[300px] max-w-[400px]"
+      className="fixed z-[2147483647] bg-white dark:bg-zinc-800 border rounded-lg shadow-xl p-4 w-[300px]"
       style={{
         left: mouseClickPosition.x,
         top: mouseClickPosition.y,
       }}
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">翻译</h3>
+        <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Translation</h3>
         <button
-          onClick={handleClose}
+          type="button"
+          onClick={() => setIsVisible(false)}
           className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded"
         >
           <X className="size-4 text-zinc-600 dark:text-zinc-400" />
@@ -95,20 +80,19 @@ export function TranslatePopover() {
       <div className="space-y-3">
         <div>
           <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-            原文
+            Original
           </label>
           <div className="p-2 bg-zinc-50 dark:bg-zinc-900 rounded border text-sm text-zinc-800 dark:text-zinc-200">
-            {selectionContent || '未选择文本'}
+            {selectionContent || 'No text selected'}
           </div>
         </div>
 
         <div>
           <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-            译文
+            Translation
           </label>
           <div className="p-2 bg-zinc-50 dark:bg-zinc-900 rounded border text-sm text-zinc-800 dark:text-zinc-200 min-h-[60px]">
-            {/* 这里将来可以集成翻译 API */}
-            翻译结果将显示在这里...
+            Translation result will be displayed here...
           </div>
         </div>
       </div>

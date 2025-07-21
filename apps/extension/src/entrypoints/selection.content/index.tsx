@@ -4,7 +4,6 @@ import { APP_NAME } from '@/utils/constants/app.ts'
 import { insertShadowRootUIWrapperInto } from '@/utils/shadow-root'
 import App from './app'
 import '@/assets/tailwind/theme.css'
-import '@/assets/tailwind/text-small.css'
 
 export default defineContentScript({
   matches: ['*://*/*'],
