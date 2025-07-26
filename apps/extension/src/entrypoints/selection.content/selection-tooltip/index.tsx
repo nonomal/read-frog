@@ -68,6 +68,7 @@ export function SelectionTooltip() {
       const selection = window.getSelection()
       const selectedText = selection?.toString().trim() || ''
 
+      // TODO: fix bug that if select the same text, the tooltip will not be shown
       if (selection && selectedText.length > 0 && selectedText !== previousSelectionTextRef.current) {
         previousSelectionTextRef.current = selectedText
         setSelectionContent(selectedText)
