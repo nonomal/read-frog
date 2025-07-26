@@ -3,6 +3,16 @@ import { Languages, X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { isTooltipVisibleAtom, isTranslatePopoverVisibleAtom, mouseClickPositionAtom, selectionContentAtom } from './atom'
 
+// async function customFetch(_input: RequestInfo | URL, init?: RequestInit) {
+//   const m = JSON.parse(init?.body as string)
+//   const result = streamText({
+//     model: openai('gpt'),
+//     messages: convertToModelMessages(m.messages),
+//     abortSignal: init?.signal as AbortSignal | undefined,
+//   })
+//   return result.toUIMessageStreamResponse()
+// }
+
 export function TranslateButton() {
   // const selectionContent = useAtomValue(selectionContentAtom)
   const setIsTooltipVisible = useSetAtom(isTooltipVisibleAtom)
