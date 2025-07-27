@@ -2,7 +2,7 @@ import type { TextUIPart } from 'ai'
 import { readUIMessageStream, streamText } from 'ai'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { Languages, X } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Spinner } from '@/components/tranlation/spinner'
 import { ISO6393_TO_6391, LANG_CODE_TO_EN_NAME } from '@/types/config/languages'
 import { isPureTranslateProvider } from '@/types/config/provider'
@@ -55,13 +55,18 @@ export function TranslatePopover() {
   const selectionContent = useAtomValue(selectionContentAtom)
   const popoverRef = useRef<HTMLDivElement>(null)
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false)
+    setTranslatedText(undefined)
+  }, [setIsVisible])
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (popoverRef.current) {
         const eventPath = event.composedPath()
         const isClickInsideTooltip = eventPath.includes(popoverRef.current)
         if (!isClickInsideTooltip) {
-          setIsVisible(false)
+          handleClose()
         }
       }
     }
@@ -70,7 +75,6 @@ export function TranslatePopover() {
       if (!selectionContent) {
         return
       }
-      setIsTranslating(true)
 
       if (!globalConfig) {
         throw new Error('No global config when translate text')
@@ -82,6 +86,7 @@ export function TranslatePopover() {
       }
       const modelString = modelConfig?.isCustomModel ? modelConfig.customModel : modelConfig?.model
 
+      setIsTranslating(true)
       if (isPureTranslateProvider(provider)) {
         const sourceLang = globalConfig.language.sourceCode === 'auto' ? 'auto' : (ISO6393_TO_6391[globalConfig.language.sourceCode] ?? 'auto')
         const targetLang = ISO6393_TO_6391[globalConfig.language.targetCode]
@@ -109,7 +114,6 @@ export function TranslatePopover() {
         for await (const uiMessage of readUIMessageStream({
           stream: result.toUIMessageStream(),
         })) {
-          // TODO: remove text assertion
           setTranslatedText((uiMessage.parts[uiMessage.parts.length - 1] as TextUIPart).text)
         }
       }
@@ -125,7 +129,7 @@ export function TranslatePopover() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isVisible, setIsVisible, selectionContent])
+  }, [isVisible, selectionContent, handleClose])
 
   if (!isVisible || !mouseClickPosition) {
     return null
@@ -144,7 +148,7 @@ export function TranslatePopover() {
         <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Translation</h3>
         <button
           type="button"
-          onClick={() => setIsVisible(false)}
+          onClick={handleClose}
           className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded"
         >
           <X className="size-4 text-zinc-600 dark:text-zinc-400" />
