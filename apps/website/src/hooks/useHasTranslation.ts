@@ -17,8 +17,12 @@ function getSnapshot() {
   return !!document.querySelector('.read-frog-translated-content-wrapper')
 }
 
+function getServerSnapshot() {
+  return false
+}
+
 export function useHasTranslation() {
-  return useSyncExternalStore(subscribe, getSnapshot)
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
   // const [hasTranslated, setHasTranslated] = useState(false)
 
   // useEffect(() => {
