@@ -48,7 +48,7 @@ export const docsLinks: LinkItemType[] = [
   {
     type: 'custom',
     children: (
-      <GithubInfo owner="mengxi-ream" repo="read-frog" className="lg:-mx-2" token={env.PUBLIC_REPO_GITHUB_TOKEN} />
+      <GithubInfo owner="mengxi-ream" repo="read-frog" className="lg:-mx-2" token={env.GITHUB_TOKEN_PUBLIC_REPO} />
     ),
   },
 ]
