@@ -11,6 +11,7 @@
         "GITHUB_TOKEN_PUBLIC_REPO",
         "SKIP_ENV_VALIDATION"
       ],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", ".source/**"]
     },
     "start": {
