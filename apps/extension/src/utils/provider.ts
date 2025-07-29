@@ -6,6 +6,12 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { createProviderRegistry } from 'ai'
 import { CONFIG_STORAGE_KEY, DEFAULT_PROVIDER_CONFIG } from './constants/config'
 
+/**
+ * Creates and returns a provider registry configured with OpenAI and DeepSeek providers using stored or default settings.
+ *
+ * Retrieves provider configuration from local storage and initializes each provider with the appropriate base URL and API key.
+ * @returns A provider registry instance containing OpenAI and DeepSeek providers.
+ */
 export async function getProviderRegistry() {
   const config = await storage.getItem<Config>(`local:${CONFIG_STORAGE_KEY}`)
 
@@ -21,6 +27,13 @@ export async function getProviderRegistry() {
   })
 }
 
+/**
+ * Retrieves a translation language model instance for the specified provider and model.
+ *
+ * @param provider - The name of the translation provider.
+ * @param model - The model identifier for the provider.
+ * @returns The language model instance corresponding to the given provider and model.
+ */
 export async function getTranslateModel(provider: keyof typeof translateProviderModels, model: string) {
   const registry = await getProviderRegistry()
   return registry.languageModel(`${provider}:${model}`)

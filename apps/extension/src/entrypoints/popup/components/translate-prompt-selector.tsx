@@ -15,6 +15,14 @@ import { isLLMTranslateProvider } from '@/types/config/provider'
 import { configFields } from '@/utils/atoms/config'
 import { DEFAULT_TRANSLATE_PROMPT_ID } from '@/utils/constants/prompt'
 
+/**
+ * Returns the display name for a translation prompt object.
+ *
+ * If the prompt's ID matches the default translation prompt ID, returns a localized default prompt name; otherwise, returns the prompt's own name.
+ *
+ * @param prompt - The translation prompt object to get the display name for
+ * @returns The display name for the given prompt
+ */
 function name(prompt: TranslatePromptObj) {
   return prompt.id === DEFAULT_TRANSLATE_PROMPT_ID ? i18n.t('options.translation.personalizedPrompt.default') : prompt.name
 }

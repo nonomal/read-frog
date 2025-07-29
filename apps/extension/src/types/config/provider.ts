@@ -33,6 +33,12 @@ export const llmTranslateProviderNames = ['openai', 'deepseek'] as const satisfi
   (keyof typeof translateProviderModels)[]
 >
 export type LLMTranslateProviderNames = typeof llmTranslateProviderNames[number]
+/**
+ * Determines whether the given provider is an LLM-based translation provider.
+ *
+ * @param provider - The name of the translation provider to check
+ * @returns True if the provider supports LLM translation; otherwise, false
+ */
 export function isLLMTranslateProvider(provider: TranslateProviderNames): provider is LLMTranslateProviderNames {
   return llmTranslateProviderNames.includes(provider as LLMTranslateProviderNames)
 }

@@ -1,3 +1,11 @@
+/**
+ * Migrates a configuration object by removing all references to the "openrouter" and "ollama" providers.
+ *
+ * All occurrences of "openrouter" and "ollama" are deleted from the `providersConfig`, `read.models`, and `translate.models` sections of the configuration. All other properties are preserved.
+ *
+ * @param oldConfig - The original configuration object to migrate
+ * @returns A new configuration object with "openrouter" and "ollama" providers removed
+ */
 export function migrate(oldConfig: any): any {
   // Remove OpenRouter and Ollama providers completely
   const newConfig = {

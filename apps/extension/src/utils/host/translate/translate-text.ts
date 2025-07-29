@@ -5,6 +5,17 @@ import { Sha256Hex } from '../../hash'
 import { sendMessage } from '../../message'
 import { getTranslatePrompt } from '../../prompts/translate'
 
+/**
+ * Translates the given source text into the target language specified in the global configuration.
+ *
+ * The function selects the appropriate translation provider and model based on the global configuration.
+ * It cleans the input text, determines the correct language codes, and handles both pure translation providers and AI model-based providers.
+ * If the translation result is identical to the cleaned source text, an empty string is returned.
+ *
+ * @param sourceText - The text to be translated
+ * @returns The translated text, or an empty string if no translation occurred
+ * @throws If the global configuration is missing or if the target language code is invalid
+ */
 export async function translateText(sourceText: string) {
   if (!globalConfig) {
     throw new Error('No global config when translate text')

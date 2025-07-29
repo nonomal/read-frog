@@ -8,6 +8,11 @@ const UPWARD_OFFSET_Y = -10
 const MARGIN = 25
 const SELECTION_DIRECTION_THRESHOLD = 5
 
+/**
+ * Displays a tooltip near the user's text selection, providing translation options and dynamically positioning itself within the viewport.
+ *
+ * The tooltip appears when the user selects text and releases the mouse button, and hides when the selection is cleared or the user clicks elsewhere. Tooltip position is calculated based on the selection point and adjusted to remain within viewport boundaries, updating on scroll and selection changes. Dragging interactions from within the tooltip are handled to prevent unintended hiding.
+ */
 export function SelectionTooltip() {
   const tooltipRef = useRef<HTMLDivElement>(null)
   const tooltipContainerRef = useRef<HTMLDivElement>(null)

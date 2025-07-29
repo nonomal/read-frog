@@ -12,6 +12,11 @@ import { getTranslatePrompt } from '@/utils/prompts/translate'
 import { getTranslateModel } from '@/utils/provider'
 import { isTooltipVisibleAtom, isTranslatePopoverVisibleAtom, mouseClickPositionAtom, selectionContentAtom } from './atom'
 
+/**
+ * Renders a button that, when clicked, displays the translation popover at the button's position.
+ *
+ * Updates global state to hide any tooltip, set the mouse click position, and show the translation popover.
+ */
 export function TranslateButton() {
   // const selectionContent = useAtomValue(selectionContentAtom)
   const setIsTooltipVisible = useSetAtom(isTooltipVisibleAtom)
@@ -47,6 +52,11 @@ export function TranslateButton() {
   )
 }
 
+/**
+ * Displays a popover near the mouse click position to show the translation of the currently selected text.
+ *
+ * When visible, automatically translates the selected text using the configured provider or model, and displays the result. Supports both instant and streaming translation providers. Closes when clicking outside or pressing the close button.
+ */
 export function TranslatePopover() {
   const [isVisible, setIsVisible] = useAtom(isTranslatePopoverVisibleAtom)
   const [isTranslating, setIsTranslating] = useState(false)

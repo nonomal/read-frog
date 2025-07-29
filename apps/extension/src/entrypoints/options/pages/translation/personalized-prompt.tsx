@@ -53,6 +53,11 @@ export function PersonalizedPrompt() {
   )
 }
 
+/**
+ * Displays a list of personalized translation prompts with options to import, export, add, edit, select, and delete prompts.
+ *
+ * Allows users to manage their collection of translation prompts, including selecting multiple prompts for export, editing existing prompts, deleting non-default prompts, and importing new prompts from a file.
+ */
 function PromptList() {
   const translateConfig = useAtomValue(configFields.translate)
   const promptsConfig = translateConfig.promptsConfig
@@ -114,6 +119,11 @@ function PromptList() {
   )
 }
 
+/**
+ * Renders a dialog for confirming and deleting a personalized translation prompt.
+ *
+ * Removes the specified prompt from the list and resets the active prompt if it was deleted.
+ */
 function DeletePrompt({ originPrompt }: { originPrompt: TranslatePromptObj }) {
   const [translateConfig, setTranslateConfig] = useAtom(configFields.translate)
   const { patterns, prompt } = translateConfig.promptsConfig
@@ -159,6 +169,13 @@ function DeletePrompt({ originPrompt }: { originPrompt: TranslatePromptObj }) {
   )
 }
 
+/**
+ * Renders a UI sheet for adding or editing a personalized translation prompt.
+ *
+ * If an existing prompt is provided, allows editing its name and text; otherwise, enables creation of a new prompt. Updates the translation configuration state upon saving.
+ *
+ * @param originPrompt - The prompt object to edit, or undefined to create a new prompt.
+ */
 function ConfigurePrompt({ originPrompt }: { originPrompt?: TranslatePromptObj }) {
   const [translateConfig, setTranslateConfig] = useAtom(configFields.translate)
 
