@@ -1,14 +1,12 @@
+import { Translate } from '@repo/icons'
 import { useMutationState } from '@tanstack/react-query'
 import { useSetAtom } from 'jotai'
 import { BookOpenText, RotateCcw } from 'lucide-react'
-
 import { useEffect } from 'react'
-
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useExtractContent } from '@/hooks/read/extract'
 import { useReadArticle } from '@/hooks/read/read'
-
 import { getFaviconUrl } from '@/utils/content'
 import { onMessage } from '@/utils/message'
 import { cn } from '@/utils/tailwind'
@@ -60,6 +58,7 @@ export function Metadata({ className }: { className?: string }) {
         className,
       )}
     >
+      <Translate />
       <div className="flex min-w-0 flex-1 items-center gap-x-2">
         {favicon && (
           <img
