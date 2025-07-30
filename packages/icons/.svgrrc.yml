@@ -7,7 +7,7 @@ outDir: src/icons
 expandProps: end
 svgProps:
   stroke: '{props.color || "currentColor"}'
-  fill: none
+  # fill: none
   strokeLinecap: round
   strokeLinejoin: round
 replaceAttrValues:
