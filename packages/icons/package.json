@@ -1,0 +1,29 @@
+{
+  "name": "@repo/icons",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "gen": "pnpm svgr raw & pnpm eslint . --fix",
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@svgr/cli": "^8.1.0",
+    "@types/node": "^22.16.4",
+    "@types/react": "^19.1.8",
+    "eslint": "^9.32.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
