@@ -35,6 +35,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@iconify/react": "^6.0.0",
     "@repo/eslint-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/typography": "^0.5.16",

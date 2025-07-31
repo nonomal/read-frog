@@ -1,4 +1,3 @@
-import { Translate } from '@repo/icons'
 import { useMutationState } from '@tanstack/react-query'
 import { useSetAtom } from 'jotai'
 import { BookOpenText, RotateCcw } from 'lucide-react'
@@ -58,7 +57,6 @@ export function Metadata({ className }: { className?: string }) {
         className,
       )}
     >
-      <Translate />
       <div className="flex min-w-0 flex-1 items-center gap-x-2">
         {favicon && (
           <img
