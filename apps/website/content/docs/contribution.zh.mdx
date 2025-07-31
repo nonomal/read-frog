@@ -64,7 +64,7 @@ pnpm db:migrate
 - `BETTER_AUTH_URL`: 与网站 URL 相同。
 - `GOOGLE_CLIENT_ID` 和 `GOOGLE_CLIENT_SECRET`: Google SSO 密钥。如果不需要本地登录，设置随机值即可。否则，在 Google 上申请一个。
 - `DATABASE_URL`: 连接到 Postgres 数据库的完整 URL。如果使用步骤 2.1 中的 Supabase，请填入该步骤中获得的 `DB URL`。
-- `GITHUB_TOKEN_PUBLIC_REPO`: 用于显示 Github 星标数。(可选)
+- `PUBLIC_REPO_GITHUB_TOKEN`: 用于显示 Github 星标数。(可选)
 
 示例 `<项目根目录>/apps/website/.env.local`：
 ```
@@ -76,7 +76,7 @@ GOOGLE_CLIENT_SECRET=<某个_GOOGLE_CLIENT_SECRET>
 
 DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
-GITHUB_TOKEN_PUBLIC_REPO=<某个_GITHUB_TOKEN_PUBLIC_REPO> (可选)
+PUBLIC_REPO_GITHUB_TOKEN=<某个_PUBLIC_REPO_GITHUB_TOKEN> (可选)
 ```
 
 ### 步骤 4: 启动开发服务器
