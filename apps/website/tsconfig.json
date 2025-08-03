@@ -1,4 +1,5 @@
 {
+  "extends": "@repo/typescript-config/next.json",
   "compilerOptions": {
     "incremental": true,
     "target": "ES2022",
@@ -9,8 +10,6 @@
       "esnext"
     ],
     "baseUrl": ".",
-    "module": "esnext",
-    "moduleResolution": "bundler",
     "paths": {
       "@/.source": [
         "./.source/index.ts"
@@ -19,19 +18,7 @@
         "./src/*"
       ]
     },
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
