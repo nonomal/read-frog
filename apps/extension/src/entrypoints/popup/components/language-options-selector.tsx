@@ -57,7 +57,7 @@ export default function LanguageOptionsSelector() {
           ))}
         </select>
       </div>
-      <Icon icon="tabler:arrow-right" className="h-4 w-4 text-neutral-500" strokeWidth={2} />
+      <Icon icon="tabler:arrow-right" className="h-4 w-4 text-neutral-500" />
       <div className="bg-input/50 hover:bg-input border-input relative inline-flex h-13 w-32 items-center justify-between rounded-lg border shadow-xs">
         <span className="pt-5 pl-4 text-sm text-neutral-500">
           {i18n.t('popup.targetLang')}
