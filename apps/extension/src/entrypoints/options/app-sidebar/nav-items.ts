@@ -1,4 +1,4 @@
-import { ApiProvidersPage } from '../pages/api-keys'
+import { ApiProvidersPage } from '../pages/api-providers'
 import { GeneralPage } from '../pages/general'
 import { TranslationPage } from '../pages/translation'
 
