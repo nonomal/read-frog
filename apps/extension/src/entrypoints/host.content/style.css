@@ -50,3 +50,16 @@
   font-family: inherit;
   text-decoration: inherit;
 }
+
+.read-frog-translation-blur-content {
+  filter: blur(4px);
+  opacity: 0.75;
+  transition:
+    filter 0.1s ease-in-out,
+    opacity 0.1s ease-in-out;
+}
+
+.read-frog-translation-blur-content:hover {
+  filter: blur(0);
+  opacity: 1;
+}
