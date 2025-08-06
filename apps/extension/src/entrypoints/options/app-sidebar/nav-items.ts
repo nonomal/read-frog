@@ -11,7 +11,7 @@ export const NAV_ITEMS = {
   },
   'api-providers': {
     title: 'apiProviders',
-    url: '/api-provider',
+    url: '/api-providers',
     icon: 'tabler:api',
     component: ApiProvidersPage,
   },
