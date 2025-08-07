@@ -104,9 +104,9 @@ options:
         cancel: Cancel
     translationStyle:
       title: Translation Display Style
-      description: Distinguish display styles of translation results
+      description: Distinguish display styles for translation results (see sample for specific style demonstrations)
       style:
-        normal: None
+        default: None
         blur: Blur Effect
 side:
   sourceLang: Source Language

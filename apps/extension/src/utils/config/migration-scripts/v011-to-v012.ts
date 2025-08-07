@@ -1,12 +1,10 @@
 export function migrate(oldConfig: any): any {
   // Integrate Translation Node Style
-  const newConfig = {
+  return {
     ...oldConfig,
     translate: {
       ...oldConfig.translate,
-      translationNodeStyle: 'normal',
+      translationNodeStyle: 'default',
     },
   }
-
-  return newConfig
 }

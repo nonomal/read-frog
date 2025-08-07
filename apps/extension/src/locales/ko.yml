@@ -104,9 +104,9 @@ options:
         cancel: 취소
     translationStyle:
       title: 번역 표시 스타일
-      description: 번역 결과 표시 스타일 구분
+      description: 번역 결과 표시 스타일 구분 (구체적인 표시 예시는 샘플 참조)
       style:
-        normal: 없음
+        default: 없음
         blur: 흐림 효과
 side:
   sourceLang: 원본 언어

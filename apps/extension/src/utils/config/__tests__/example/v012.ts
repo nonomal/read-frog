@@ -84,7 +84,7 @@ Input:
       capacity: 300,
       rate: 5,
     },
-    translationNodeStyle: 'normal',
+    translationNodeStyle: 'default',
   },
   floatingButton: {
     enabled: true,

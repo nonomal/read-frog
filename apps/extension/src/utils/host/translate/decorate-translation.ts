@@ -1,18 +1,19 @@
+import type { TranslationNodeStyle } from '@/types/config/provider'
+import { camelCase } from 'case-anything'
 import { translationNodeStyleSchema } from '@/types/config/provider'
 import { globalConfig } from '@/utils/config/config'
-import { TRANSLATE_NODE_STYLE_ITEMS } from '@/utils/constants/translate-node-style'
+import { CUSTOM_TRANSLATION_NODE_ATTRIBUTE } from '@/utils/constants/translation-node-style'
 
-export function decorateTranslationNode(translatedNode: HTMLElement) {
-  if (!globalConfig)
+const styleAttribute = camelCase(CUSTOM_TRANSLATION_NODE_ATTRIBUTE)
+
+export function decorateTranslationNode(translatedNode: HTMLElement, translationNodeStyle?: TranslationNodeStyle) {
+  if (!globalConfig || !translatedNode)
     return
-  const translationNodeStyle = globalConfig.translate.translationNodeStyle
 
-  const parseConfigStatus = translationNodeStyleSchema.safeParse(translationNodeStyle)
-  if (parseConfigStatus.error) {
-    throw new Error(parseConfigStatus.error.issues[0].message)
-  }
-  const { className } = TRANSLATE_NODE_STYLE_ITEMS[translationNodeStyle]
-  const classNames = className.trim().split(' ')
+  const nodeStyle = translationNodeStyle ?? globalConfig.translate.translationNodeStyle
 
-  translatedNode.classList.add(...classNames)
+  if (translationNodeStyleSchema.safeParse(nodeStyle).error)
+    return
+
+  translatedNode.dataset[styleAttribute] = nodeStyle
 }

@@ -1,3 +1,5 @@
+@import '@/assets/tailwind/custom-translation-node.css';
+
 :root {
   --read-frog-primary: oklch(76.5% 0.177 163.223);
   --read-frog-muted: oklch(0.97 0 0);
@@ -49,17 +51,4 @@
   color: inherit;
   font-family: inherit;
   text-decoration: inherit;
-}
-
-.read-frog-translation-blur-content {
-  filter: blur(4px);
-  opacity: 0.75;
-  transition:
-    filter 0.1s ease-in-out,
-    opacity 0.1s ease-in-out;
-}
-
-.read-frog-translation-blur-content:hover {
-  filter: blur(0);
-  opacity: 1;
 }

@@ -90,7 +90,7 @@ export const DEFAULT_CONFIG: Config = {
       capacity: DEFAULT_REQUEST_CAPACITY,
       rate: DEFAULT_REQUEST_RATE,
     },
-    translationNodeStyle: 'normal',
+    translationNodeStyle: 'default',
   },
   floatingButton: {
     enabled: true,
