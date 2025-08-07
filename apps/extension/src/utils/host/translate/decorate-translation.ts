@@ -4,16 +4,16 @@ import { translationNodeStyleSchema } from '@/types/config/provider'
 import { globalConfig } from '@/utils/config/config'
 import { CUSTOM_TRANSLATION_NODE_ATTRIBUTE } from '@/utils/constants/translation-node-style'
 
-const styleAttribute = camelCase(CUSTOM_TRANSLATION_NODE_ATTRIBUTE)
+const customTranslationNodeAttribute = camelCase(CUSTOM_TRANSLATION_NODE_ATTRIBUTE)
 
 export function decorateTranslationNode(translatedNode: HTMLElement, translationNodeStyle?: TranslationNodeStyle) {
   if (!globalConfig || !translatedNode)
     return
 
-  const nodeStyle = translationNodeStyle ?? globalConfig.translate.translationNodeStyle
+  const customNodeStyle = translationNodeStyle ?? globalConfig.translate.translationNodeStyle
 
-  if (translationNodeStyleSchema.safeParse(nodeStyle).error)
+  if (translationNodeStyleSchema.safeParse(customNodeStyle).error)
     return
 
-  translatedNode.dataset[styleAttribute] = nodeStyle
+  translatedNode.dataset[customTranslationNodeAttribute] = customNodeStyle
 }
