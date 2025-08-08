@@ -14,8 +14,6 @@ body:
       options:
         - label: I have searched existing issues to avoid duplicates
           required: true
-        - label: This is suited for GitHub (not a general question)
-          required: true
         - label: I have tried with the latest available version (or can reproduce on latest)
           required: false
   - type: markdown
@@ -25,24 +23,6 @@ body:
 
         Feature requests should be opened via the Feature request form.
         Feature requests: https://github.com/mengxi-ream/read-frog/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml&title=
-
-        Before opening a new issue, please do a search of existing issues and upvote the existing issue instead when possible. This will result in a quicker resolution.
-        Search issues: https://github.com/mengxi-ream/read-frog/issues
-  - type: textarea
-    id: reproduce
-    attributes:
-      label: To Reproduce
-      description: |
-        A step-by-step description of how to reproduce the issue. If you have a minimal reproduction repository or link, include it below.
-        Screenshots can be provided in the issue body as well.
-      placeholder: |
-        Ex:
-        1. Open a news article page
-        2. Click the Read Frog icon to open the popup
-        3. Enable Immersive Translation
-        4. Observe translation not appearing on the page
-    validations:
-      required: true
   - type: textarea
     id: expected
     attributes:
@@ -54,6 +34,20 @@ body:
       placeholder: 'Following the steps from the previous section, I expected A to happen, but I observed B instead.'
     validations:
       required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: |
+        A step-by-step description of how to reproduce the issue. Screenshots can be provided in the issue body as well.
+      placeholder: |
+        Ex:
+        1. Open a news article page
+        2. Click the Read Frog icon to open the popup
+        3. Enable Immersive Translation
+        4. Observe translation not appearing on the page
+    validations:
+      required: true
   - type: input
     id: extension_version
     attributes:
@@ -61,11 +55,11 @@ body:
       description: Provide the current version of the browser extension
       placeholder: 1.x.x
   - type: input
-    id: app_version
+    id: website_version
     attributes:
-      label: App/Website version or commit (if applicable)
-      description: If reporting an issue with the website or local app, provide the version or commit hash
-      placeholder: 'commit: abcdef1'
+      label: Website version (if applicable)
+      description: If reporting an issue with the website, provide the version
+      placeholder: 1.x.x
   - type: dropdown
     id: areas
     attributes:
@@ -74,11 +68,6 @@ body:
       options:
         - Browser Extension
         - Website
-        - API
-        - DB
-        - Auth
-        - Documentation
-        - CI/Release
         - Other
     validations:
       required: true
@@ -95,12 +84,6 @@ body:
         - Website: [e.g. https://readfrog.app, date/time observed]
     validations:
       required: true
-  - type: textarea
-    id: repro_link
-    attributes:
-      label: Minimal reproduction (link or repository)
-      description: Link to a minimal example that reproduces the issue, if available
-      placeholder: 'https://...'
   - type: textarea
     id: logs
     attributes:

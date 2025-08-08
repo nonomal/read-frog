@@ -14,8 +14,6 @@ body:
       options:
         - label: I have searched existing issues to avoid duplicates
           required: true
-        - label: This is suited for GitHub (not a general question)
-          required: true
         - label: I am willing to contribute a PR for this feature
           required: false
   - type: markdown
@@ -25,9 +23,6 @@ body:
 
         Bug reports should be opened via the Bug report form.
         Bug reports: https://github.com/mengxi-ream/read-frog/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=
-
-        Before opening a feature request, please do a search of existing issues and upvote an existing request instead when possible. This will result in a quicker resolution.
-        Search issues: https://github.com/mengxi-ream/read-frog/issues
   - type: textarea
     id: problem
     attributes:
@@ -40,13 +35,6 @@ body:
       description: A clear and concise description of what you want to happen.
     validations:
       required: true
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Describe alternatives you've considered
-      description: A clear and concise description of any alternative solutions or features you've considered.
-    validations:
-      required: true
   - type: dropdown
     id: areas
     attributes:
@@ -55,18 +43,7 @@ body:
       options:
         - Browser Extension
         - Website
-        - API
-        - DB
-        - Auth
-        - Documentation
-        - CI/Release
         - Other
-  - type: textarea
-    id: use_case
-    attributes:
-      label: Primary use case / user story
-      description: Describe how you would use this feature as a user. Include concrete examples.
-      placeholder: 'As a language learner, I want ... so that ...'
   - type: dropdown
     id: priority
     attributes:
