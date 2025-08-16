@@ -1,5 +1,71 @@
 # @read-frog/extension
 
+## 1.4.1
+
+### Patch Changes
+
+- [`35c6d73`](https://github.com/mengxi-ream/read-frog/commit/35c6d73688d484b6bdcd9daeb12fcaad72dcf271) Thanks [@mengxi-ream](https://github.com/mengxi-ream)! - perf: redirect auth endpoint to /api/identity
+
+## 1.4.0
+
+### Minor Changes
+
+- [#346](https://github.com/mengxi-ream/read-frog/pull/346) [`1fe2780`](https://github.com/mengxi-ream/read-frog/commit/1fe2780b559f3392bec7f0be7755f8b4e34dc5fe) Thanks [@sedationh](https://github.com/sedationh)! - fix: when drag float button, should keep hover state
+
+### Patch Changes
+
+- [#349](https://github.com/mengxi-ream/read-frog/pull/349) [`7c0ce5d`](https://github.com/mengxi-ream/read-frog/commit/7c0ce5dc71b62f5429a2b54554aabd6f81c99e5d) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: host content style missing
+
+- [#335](https://github.com/mengxi-ream/read-frog/pull/335) [`e044745`](https://github.com/mengxi-ream/read-frog/commit/e044745ca4395cc553829f657f846c9171796f0b) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: try catch readability
+
+## 1.3.0
+
+### Minor Changes
+
+- [#315](https://github.com/mengxi-ream/read-frog/pull/315) [`9d378a9`](https://github.com/mengxi-ream/read-frog/commit/9d378a9029e1d59ea6eefbd84de3c07010943da1) Thanks [@sedationh](https://github.com/sedationh)! - feat: warn user that the source language is the same as the target language
+
+### Patch Changes
+
+- [#331](https://github.com/mengxi-ream/read-frog/pull/331) [`92e855a`](https://github.com/mengxi-ream/read-frog/commit/92e855a8c2cddc4493d056df63d6f1ebe8d3ea58) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: reduce concurrent request capacity
+
+- [#330](https://github.com/mengxi-ream/read-frog/pull/330) [`5e75705`](https://github.com/mengxi-ream/read-frog/commit/5e75705adbede1cd8c317559e640165cf7383465) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: hide floating button when printing web
+
+- [#333](https://github.com/mengxi-ream/read-frog/pull/333) [`f5c2c10`](https://github.com/mengxi-ream/read-frog/commit/f5c2c1082daa03e7118b3f4e4dbb8663fb834736) Thanks [@sedationh](https://github.com/sedationh)! - fix: Shouldn't override Ctrl+Shift+A hotkey https://github.com/mengxi-ream/read-frog/issues/318
+
+## 1.2.2
+
+### Patch Changes
+
+- [#324](https://github.com/mengxi-ream/read-frog/pull/324) [`1d5472e`](https://github.com/mengxi-ream/read-frog/commit/1d5472e10e44ff27d31e0e691825c859b7f4d732) Thanks [@mengxi-ream](https://github.com/mengxi-ream)! - perf: cache auth client by proxy
+
+- [#321](https://github.com/mengxi-ream/read-frog/pull/321) [`e531adc`](https://github.com/mengxi-ream/read-frog/commit/e531adc1abdcc1f481184e5ae042aea7d12e3945) Thanks [@taiiiyang](https://github.com/taiiiyang)! - fix: weird format when translating reddit
+
+## 1.2.1
+
+### Patch Changes
+
+- [#308](https://github.com/mengxi-ream/read-frog/pull/308) [`ac96b1c`](https://github.com/mengxi-ream/read-frog/commit/ac96b1c18960d0c169feaa1dea9ee46468c83ba6) Thanks [@taiiiyang](https://github.com/taiiiyang)! - fix: Language selector text is unreadable in Dark Mode
+
+- [#312](https://github.com/mengxi-ream/read-frog/pull/312) [`5120759`](https://github.com/mengxi-ream/read-frog/commit/5120759a1a18e92431ea0d184056ba727ff4e999) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: popup ui
+
+- [#319](https://github.com/mengxi-ream/read-frog/pull/319) [`4dc2106`](https://github.com/mengxi-ream/read-frog/commit/4dc2106b220a1b332b53afd3c65808a0f1a55ace) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: custom models in option page
+
+- [#319](https://github.com/mengxi-ream/read-frog/pull/319) [`4dc2106`](https://github.com/mengxi-ream/read-frog/commit/4dc2106b220a1b332b53afd3c65808a0f1a55ace) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - perf: improve speed for gemini thinking models
+
+## 1.2.0
+
+### Minor Changes
+
+- [#275](https://github.com/mengxi-ream/read-frog/pull/275) [`7d6714f`](https://github.com/mengxi-ream/read-frog/commit/7d6714f8e8dbce5cd0cbd5f54505ae7affed941b) Thanks [@AnotiaWang](https://github.com/AnotiaWang)! - feat: added new translation style `weakened`
+
+### Patch Changes
+
+- [#295](https://github.com/mengxi-ream/read-frog/pull/295) [`5e849b3`](https://github.com/mengxi-ream/read-frog/commit/5e849b3951783cc67081683d13d0d931073fb725) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: can't translate selection text with deeplx
+
+- [#290](https://github.com/mengxi-ream/read-frog/pull/290) [`d392aae`](https://github.com/mengxi-ream/read-frog/commit/d392aae9e81758e2fb7ae8d9e987a0a24ed06781) Thanks [@ananaBMaster](https://github.com/ananaBMaster)! - fix: custom prompt textarea size
+
+- [#273](https://github.com/mengxi-ream/read-frog/pull/273) [`12624be`](https://github.com/mengxi-ream/read-frog/commit/12624be6c5cbfcc9097a9c5c2c519a74e12a055f) Thanks [@taiiiyang](https://github.com/taiiiyang)! - refactor: extract ui, themes and cn to @repo/ui
+
 ## 1.1.0
 
 ### Minor Changes

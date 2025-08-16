@@ -1,35 +1,33 @@
-import type { translateProviderModels } from '@/types/config/provider'
-import { i18n } from '#imports'
 import { Icon } from '@iconify/react'
 import { cn } from '@repo/ui/lib/utils'
 import { useAtomValue } from 'jotai'
-import { toast } from 'sonner'
-import { pureTranslateProvider } from '@/types/config/provider'
 import { configFields } from '@/utils/atoms/config'
-import { hasSetAPIKey } from '@/utils/config/config'
 import { removeAllTranslatedWrapperNodes } from '@/utils/host/translate/node-manipulation'
+import { validateTranslationConfig } from '@/utils/host/translate/translate-text'
 import { sendMessage } from '@/utils/message'
-import { enablePageTranslationAtom } from '../../atoms'
+import { enablePageTranslationAtom, isDraggingButtonAtom } from '../../atoms'
 import HiddenButton from './components/hidden-button'
 
 export default function TranslateButton() {
   const enablePageTranslation = useAtomValue(enablePageTranslationAtom)
   const providersConfig = useAtomValue(configFields.providersConfig)
   const translateConfig = useAtomValue(configFields.translate)
+  const languageConfig = useAtomValue(configFields.language)
+  const isDraggingButton = useAtomValue(isDraggingButtonAtom)
 
   return (
     <HiddenButton
       icon="ri:translate"
+      className={(isDraggingButton ? 'translate-x-0' : '')}
       onClick={() => {
-        const provider = translateConfig.provider
-        const isPure = pureTranslateProvider.includes(
-          provider as typeof pureTranslateProvider[number],
-        )
-        if (!isPure && !hasSetAPIKey(provider as keyof typeof translateProviderModels, providersConfig)) {
-          toast.error(i18n.t('noConfig.warning'))
-          return
-        }
         if (!enablePageTranslation) {
+          if (!validateTranslationConfig({
+            providersConfig,
+            translate: translateConfig,
+            language: languageConfig,
+          })) {
+            return
+          }
           sendMessage('setEnablePageTranslationOnContentScript', {
             enabled: true,
           })

@@ -105,7 +105,7 @@ Next.js 15 app with:
 
 ## Commit Message Guidelines
 
-Follow conventional commits format: `type(scope): description`
+Follow conventional commits format: `type(scope): description`, keep the commit message concise and clear. and don't add `🤖 Generated with [Claude Code](https://claude.ai/code)` in the commit message.
 
 **Allowed commit types:**
 
@@ -130,3 +130,7 @@ Follow conventional commits format: `type(scope): description`
 - `docs: update contribution guide`
 - `i18n(extension): add Japanese translations`
 - `ai(extension): integrate new DeepSeek model`
+
+## Language
+
+The code comments should be in English.

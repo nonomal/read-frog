@@ -7,7 +7,7 @@ import { useReadArticle } from '@/hooks/read/read'
 import { configFields } from '@/utils/atoms/config'
 
 import { isAnyAPIKey } from '@/utils/config/config'
-import { isSideOpenAtom } from '../../atoms'
+import { isDraggingButtonAtom, isSideOpenAtom } from '../../atoms'
 import HiddenButton from './components/hidden-button'
 
 export default function FloatingReadButton() {
@@ -18,17 +18,22 @@ export default function FloatingReadButton() {
     analyzeContent,
     explainArticle,
   } = useReadArticle()
-  const { data: extractedContent } = useExtractContent()
+  const { isPending: isExtractingContent, data: extractedContent } = useExtractContent()
+  const isDraggingButton = useAtomValue(isDraggingButtonAtom)
 
   const startReadArticle = () => {
     if (!isAnyAPIKey(providersConfig)) {
-      toast.error(i18n.t('noConfig.warning'))
+      toast.error(i18n.t('noAPIKeyConfig.warning'))
       return
     }
 
     setIsSideOpen(true)
-    if (!extractedContent) {
+    if (isExtractingContent) {
       toast.warning('Waiting content to be extracted...')
+      return
+    }
+    if (!isExtractingContent && !extractedContent) {
+      toast.error('Failed to extract content')
       return
     }
     if (analyzeContent.isPending || explainArticle.isPending) {
@@ -38,5 +43,5 @@ export default function FloatingReadButton() {
     readArticle()
   }
 
-  return <HiddenButton icon="tabler:book" onClick={startReadArticle} />
+  return <HiddenButton icon="tabler:book" onClick={startReadArticle} className={(isDraggingButton ? 'translate-x-0' : '')} />
 }

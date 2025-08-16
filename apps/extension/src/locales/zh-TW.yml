@@ -8,7 +8,8 @@ popup:
   read: 閱讀文章
   translate: 翻譯
   showOriginal: 顯示原文
-  enabledFloatingButton: 開啟懸浮按鈕
+  enabledFloatingButton: 啟用懸浮按鈕
+  enabledSelectionToolbar: 啟用選擇工具列
   alwaysTranslate: 總是翻譯這個網站
   options: 選項
   hover: 滑鼠懸停
@@ -109,7 +110,7 @@ options:
       style:
         default: 無
         blur: 模糊效果
-        blockquote: 引用樣式
+        blockquote: 引用
         weakened: 弱化
 side:
   sourceLang: 來源語言
@@ -131,7 +132,7 @@ languageLevels:
   beginner: 初級
   intermediate: 中級
   advanced: 高級
-noConfig:
+noAPIKeyConfig:
   warning: 如果想要使用 AI 模型，請先在選項頁設置 API Key
   warningWithLink:
     youMust: 您必須先
@@ -139,3 +140,6 @@ noConfig:
     firstOnThe: 在
     optionsPage: 選項
     page: 頁
+translation:
+  sameLanguage: 源語言和目標語言必須不同
+  autoModeSameLanguage: 檢測到的語言 '$1' 與目標語言相同

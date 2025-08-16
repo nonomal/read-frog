@@ -1,5 +1,25 @@
 # @read-frog/website
 
+## 1.0.3
+
+### Patch Changes
+
+- [`35c6d73`](https://github.com/mengxi-ream/read-frog/commit/35c6d73688d484b6bdcd9daeb12fcaad72dcf271) Thanks [@mengxi-ream](https://github.com/mengxi-ream)! - perf: redirect auth endpoint to /api/identity
+
+## 1.0.2
+
+### Patch Changes
+
+- [#252](https://github.com/mengxi-ream/read-frog/pull/252) [`2756fee`](https://github.com/mengxi-ream/read-frog/commit/2756feeaf3ffcd5e7d367882e18896a8ffa4d4ba) Thanks [@chandanrakholia](https://github.com/chandanrakholia)! - fix: no login avatar on mobile home page after login
+
+- [#316](https://github.com/mengxi-ream/read-frog/pull/316) [`17409f6`](https://github.com/mengxi-ream/read-frog/commit/17409f6f9fc36882257b850007569b665da7b31a) Thanks [@sedationh](https://github.com/sedationh)! - add conteibution guide about dev
+
+## 1.0.1
+
+### Patch Changes
+
+- [#273](https://github.com/mengxi-ream/read-frog/pull/273) [`12624be`](https://github.com/mengxi-ream/read-frog/commit/12624be6c5cbfcc9097a9c5c2c519a74e12a055f) Thanks [@taiiiyang](https://github.com/taiiiyang)! - refactor: extract ui, themes and cn to @repo/ui
+
 ## 1.0.0
 
 ### Major Changes
